@@ -31,7 +31,6 @@ def predict_essay(essay, model, tokenizer, threshold=0.005):
 # Streamlit UI
 st.title("AI Text Detection")
 user_essay = st.text_area("Enter your essay:")
-threshold = st.slider("Detection Threshold", 0.0, 1.0, 0.4)
 
 if st.button("Check if AI-generated"):
     if user_essay.strip():
