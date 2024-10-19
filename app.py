@@ -12,7 +12,7 @@ def load_model_and_tokenizer():
 model, tokenizer = load_model_and_tokenizer()
 
 # Prediction function
-def predict_essay(essay, model, tokenizer, threshold=0.4):
+def predict_essay(essay, model, tokenizer, threshold=0.98):
     model.to('cuda' if torch.cuda.is_available() else 'cpu')
     model.eval()
 
@@ -31,12 +31,10 @@ def predict_essay(essay, model, tokenizer, threshold=0.4):
 # Streamlit UI
 st.title("AI Text Detection")
 user_essay = st.text_area("Enter your essay:")
-threshold = st.slider("Detection Threshold", 0.0, 1.0, 0.4)
 
 if st.button("Check if AI-generated"):
     if user_essay.strip():
         is_ai_generated, probabilities = predict_essay(user_essay, model, tokenizer, threshold)
         st.write(f"Is AI-generated: {is_ai_generated[0]}")
-        st.write(f"Probability: {probabilities[0]:.4f}")
     else:
         st.write("Please enter an essay.")
