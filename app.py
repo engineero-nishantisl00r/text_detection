@@ -36,6 +36,6 @@ if st.button("Check if AI-generated"):
     if user_essay.strip():
         is_ai_generated, probabilities = predict_essay(user_essay, model, tokenizer, threshold=0.005)
         st.write(f"This Essay is AI-generated: {is_ai_generated[0]}")
-        st.write(f"Probability: {probabilities[0]:.4f}")
+        st.write(f"Probability of AI generated: {probabilities[0]:.4f}")
     else:
         st.write("Please enter an essay.")
